@@ -1,29 +1,59 @@
 ###################
-What is CodeIgniter
+CodeIgniter Rest API
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Simple rest api source code for learning backend service.
+inspired by `moemoe89 <https://github.com/moemoe89>`_
 
 *******************
-Release Information
+Setup
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Download or clone this repository into your web server.
+do some config and import mysql.
+
+You can use `POSTMAN <https://codeigniter.com/docs>`_ to simulate frontend.
 
 **************************
-Changelog and New Features
+List API
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+Test the API by including header in every request
+- Content-Type => application/json
+- Client-Service => frontend-client
+- Auth-Key => simplerest
+
+Include The header for both look like this User-ID & Authorization for every API request except Login.
+
+user API can be access by user with Admin level except update password. 
+
+List of the API :
+
+[POST] /auth/login json { "username" : "admin", "password" : "admin123$"}
+
+[GET] /users
+
+[POST] /users/create json { "username" : "x", "password" : "xx", "fullname" : "xxx"}
+
+[PUT] /users/update/:id json { "username" : "y", "fullname" : "yyy"}
+
+[DELETE] /uses/delete/:id
+
+[GET] /users/:id
+
+[PUT] /users/update/pass json { "old_pass" : "y", "new_pass" : "yy", "conf_pass" : "yyy"}
+
+[GET] /book
+
+[POST] /book/create json { "title" : "x", "author" : "xx"}
+
+[PUT] /book/update/:id json { "title" : "y", "author" : "yy"}
+
+[GET] /book/:id
+
+[DELETE] /book/delete/:id
+
+[POST] /auth/logout
 
 *******************
 Server Requirements
@@ -34,37 +64,3 @@ PHP version 5.6 or newer is recommended.
 It should work on 5.3.7 as well, but we strongly advise you NOT to run
 such old versions of PHP, because of potential security and performance
 issues, as well as missing features.
-
-************
-Installation
-************
-
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
-
-*******
-License
-*******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community IRC <https://webchat.freenode.net/?channels=%23codeigniter>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
