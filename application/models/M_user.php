@@ -45,14 +45,14 @@ class M_user extends CI_Model {
 				->from('users')
 				->where('id',$id)->get()->row();
 		if($q==""){
-			return array('status'=>204,'message'=>'Username not found.');
+			return array('status'=>404,'message'=>'Username not found.');
 		}
 		$hashPassword = $q->password;
 		if($params['new_pass']!=$params['conf_pass']){
 			return array('status'=>401,'message'=>" New and Conf pass are not match");
 		}
 		if(hash_equals($hashPassword, crypt($params['old_pass'], $hashPassword))) {
-			$data['password'] = crypt($data['new_password']);
+			$data['password'] = crypt($params['new_pass']);
 			$data['updated_at'] = date("Y-m-d H:i:s");
 			$this->db->where('id',$id)->update('users',$data);
 		}else{

@@ -27,7 +27,7 @@ class M_auth extends CI_Model {
 				->from('users')
 				->where('username',$username)->get()->row();
 		if($q==""){
-			return array('status'=>204,'message'=>'Username not found.');
+			return array('status'=>404,'message'=>'Username not found.');
 		}else{
 			$hashPassword = $q->password;
 			$id = $q->id;
@@ -47,9 +47,10 @@ class M_auth extends CI_Model {
 					return array('status'=>200,'message'=>'Succesfully Login!','id'=>$id,'token'=>$token);
 				}
 			}else{
-				return array('status'=>204,'message'=>'Wrong Password.');	
+				return array('status'=>404,'message'=>'Wrong Password.');	
 			}
 		}
+
 	}
 
 	public function logout()
